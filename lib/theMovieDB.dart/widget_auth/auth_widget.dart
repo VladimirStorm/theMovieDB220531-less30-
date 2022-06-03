@@ -39,7 +39,9 @@ class _HeaderWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-              'In order to use the editing and rating capabilities of TMDB, as well as get personal recommendations you will need to login to your account. If you do not have an account, registering for an account is free and simple. Click here to get started.',
+              'In order to use the editing and rating capabilities of TMDB,
+              as well as get personal recommendations you will need to login to your account. 
+              If you do not have an account, registering for an account is free and simple. Click here to get started.',
               style: textStyle1),
           TextButton(
               onPressed: () {},
@@ -120,8 +122,10 @@ class __FormWidgetState extends State<_FormWidget> {
           ),
           SizedBox(height: 21),
         ],
-        /* добавим "..." (Spread operator) это означает, что, если erorrText не равен null, то надо добавить подмассив с двумя виджетами Text & SizedBox и остальные виджеты. 
-          Тем самым мы добились, того что, при прав-м вводе полей, у нас исчезает SizedBox(height: 21), а при не правильном он появл-ся.       
+        /* добавим "..." (Spread operator) это означает, что, если erorrText не равен null, 
+        то надо добавить подмассив с двумя виджетами Text & SizedBox и остальные виджеты. 
+          Тем самым мы добились, того что, при прав-м вводе полей, у нас исчезает SizedBox(height: 21),
+          а при не правильном он появл-ся.       
          */
         Text(
           'Username',
