@@ -13,5 +13,5 @@ linter:
     # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
     # use_key_in_widget_constructors
     - always_use_package_imports 
-    - avoid_print
+   
 

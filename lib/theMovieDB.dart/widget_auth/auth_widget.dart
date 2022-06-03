@@ -14,9 +14,10 @@ class _AuthWidgetState extends State<AuthWidget> {
       appBar: AppBar(title: Text('Login to your account')),
       body: ListView(
         children: [
-          _HeaderWidget(),
-          SizedBox(height: 30),
+          SizedBox(height: 25),
           _FormWidget(),
+          SizedBox(height: 30),
+          _HeaderWidget(),
         ],
       ),
     );
@@ -37,7 +38,6 @@ class _HeaderWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 25),
           Text(
               'In order to use the editing and rating capabilities of TMDB, as well as get personal recommendations you will need to login to your account. If you do not have an account, registering for an account is free and simple. Click here to get started.',
               style: textStyle1),
@@ -74,13 +74,18 @@ class __FormWidgetState extends State<_FormWidget> {
     final login1 = _loginTextController.text;
     final password1 = _passwordTextController.text;
 
-    //мини проверка на валидность
+    //мини проверка на валидность.
     if (login1 == 'admin' && password1 == 'admin') {
       errorText = null;
       print('open my App');
     } else {
       errorText = 'Неверный текст или пароль';
+      print('Show error');
     }
+    setState(() {
+      //не обяз-но заворачивать сюда всю логику данной ф-ии, можно
+      //добавить setState и позже.
+    });
   }
 
   void _resetPassword() {
@@ -102,15 +107,22 @@ class __FormWidgetState extends State<_FormWidget> {
       contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       isCollapsed: true,
     );
-    final errorText = this.errorText;
+
+    final errorText = this.errorText; // ??? Зачем нужна эта строка?
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        if (errorText != null)
+        if (errorText != null) ...[
           Text(
             errorText,
-            style: TextStyle(color: Colors.red, fontSize: 17);
+            style: TextStyle(color: Colors.red, fontSize: 17),
           ),
+          SizedBox(height: 21),
+        ],
+        /* добавим "..." (Spread operator) это означает, что, если erorrText не равен null, то надо добавить подмассив с двумя виджетами Text & SizedBox и остальные виджеты. 
+          Тем самым мы добились, того что, при прав-м вводе полей, у нас исчезает SizedBox(height: 21), а при не правильном он появл-ся.       
+         */
         Text(
           'Username',
           style: textStyle2,
@@ -134,7 +146,7 @@ class __FormWidgetState extends State<_FormWidget> {
         SizedBox(height: 25),
         Row(
           children: [
-            TextButton(
+            ElevatedButton(
               onPressed: _auth,
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(color1),
